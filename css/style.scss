@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css?family=Calistoga|Noto+Sans+KR&display=swap');
+
+$primary-color: #F47258; 
+$secondary-color: #62B6CB;
+$grey: #62727C;
+$light-grey:#ECE9E6;
+$light-color: #ffffff;
+$default-padding: 15px;
+$header-font: 'Calistoga', cursive;
+$body-font: 'Noto Sans KR', sans-serif;
+
+body {
+    background: #ECE9E6;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    font-family: $body-font;
+    height: 100%;
+    font-size: 18px;
+}
+
+h1, h2, h3, th {
+    font-family: $header-font;
+}
+
+button.mycolor {
+    background-color: $primary-color;
+    font-weight: bold;
+    &:hover, &:active, &:focus {
+        background-color:lighten($primary-color, 20%);  
+    }
+}
+
+/* -------------------------------------------------------------- */
+/* Styling the wrapper and to do layout*/
+/* -------------------------------------------------------------- */
+
+.weather-panel {
+    border: 1px solid $grey;
+    border-radius: 2px;
+    padding: 7px;
+}
+
+/* -------------------------------------------------------------- */
+/* Search Box */
+/* -------------------------------------------------------------- */
+
+.search-box2 input[type=text] {
+    float: left;
+    width: 60%;
+}
+
+.search-box {
+    float: left;
+    width: 70%;
+}
+
+.search-btn {
+    float: left;
+    width: 30%;
+}
+
+.weather-sidenav {
+    width: 300px;
+}

@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css?family=Calistoga|Noto+Sans+KR&display=swap");
+body {
+  background: #ECE9E6;
+  /* fallback for old browsers */
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-gradient(linear, left top, right top, from(#FFFFFF), to(#ECE9E6));
+  background: linear-gradient(to right, #FFFFFF, #ECE9E6);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  font-family: "Noto Sans KR", sans-serif;
+  height: 100%;
+  font-size: 18px;
+}
+
+h1, h2, h3, th {
+  font-family: "Calistoga", cursive;
+}
+
+button.mycolor {
+  background-color: #F47258;
+  font-weight: bold;
+}
+
+button.mycolor:hover, button.mycolor:active, button.mycolor:focus {
+  background-color: #fac3b8;
+}
+
+/* -------------------------------------------------------------- */
+/* Styling the wrapper and to do layout*/
+/* -------------------------------------------------------------- */
+.weather-panel {
+  border: 1px solid #62727C;
+  border-radius: 2px;
+  padding: 7px;
+}
+
+/* -------------------------------------------------------------- */
+/* Search Box */
+/* -------------------------------------------------------------- */
+.search-box2 input[type=text] {
+  float: left;
+  width: 60%;
+}
+
+.search-box {
+  float: left;
+  width: 70%;
+}
+
+.search-btn {
+  float: left;
+  width: 30%;
+}
+
+.weather-sidenav {
+  width: 300px;
+}
+/*# sourceMappingURL=style.css.map */
