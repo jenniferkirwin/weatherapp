@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Calistoga|Noto+Sans+KR&display=swap');
 
-$primary-color: #F47258; 
+$primary-color: #17259E; 
 $secondary-color: #62B6CB;
-$grey: #62727C;
+$grey: #ECE9E6;
 $light-grey:#ECE9E6;
 $light-color: #ffffff;
 $default-padding: 15px;
@@ -10,16 +10,23 @@ $header-font: 'Calistoga', cursive;
 $body-font: 'Noto Sans KR', sans-serif;
 
 body {
-    background: #ECE9E6;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    /* Background pattern from Toptal Subtle Patterns */
+    background-image: url("../images/gplaypattern.png");
     font-family: $body-font;
     height: 100%;
     font-size: 18px;
 }
 
-h1, h2, h3, th {
+h1, h2, h3, .brand-logo {
     font-family: $header-font;
+}
+
+.brand-logo {
+    margin-left: $default-padding;
+}
+
+nav {
+    background-color: $primary-color;
 }
 
 button.mycolor {
@@ -37,14 +44,15 @@ button.mycolor {
 .weather-panel {
     border: 1px solid $grey;
     border-radius: 2px;
-    padding: 7px;
+    padding: 5px 25px;
+    background-color: $light-color;
 }
 
 /* -------------------------------------------------------------- */
 /* Search Box */
 /* -------------------------------------------------------------- */
 
-.search-box2 input[type=text] {
+.search-form input[type=text] {
     float: left;
     width: 60%;
 }
@@ -61,4 +69,11 @@ button.mycolor {
 
 .weather-sidenav {
     width: 300px;
+}
+
+.city-list {
+    clear: left;
+    li {
+        list-style-type: none;
+    }
 }

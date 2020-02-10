@@ -1423,6 +1423,8 @@ $(document).ready(function () {
 
 let iconURL = `http://openweathermap.org/img/wn/`;
 let forecastArray = [];
+let searchedCities = [];
+let $cityList = $(`.city-list`);
 
 // Convert Tempuratures
 
@@ -1430,6 +1432,54 @@ function tempConvertor(givenTemp) {
     let conTemp = Math.round((parseInt(givenTemp)*(9/5) - 459.67));
     return conTemp;
 };
+
+// -------------------------------------------------------------------------------------
+// Create city, display on page, and set local storage
+// -------------------------------------------------------------------------------------
+
+// Search Button
+
+$(`.search-btn`).on(`click`, function(event) {
+    event.preventDefault();
+    let cityName = $(`#search`).val();
+
+    // add to array
+    searchedCities.unshift(cityName);
+
+    // set local storage
+    localStorage.setItem(`searchedCities`, JSON.stringify(searchedCities));
+
+    // clear search and prepend li
+    $(`#search`).val(``);
+    $cityList.prepend($(`<li>`).text(cityName));
+});
+
+// Append Items to List
+
+// Display saved searches on load
+
+if (localStorage.getItem("searchedCities") !== null) {
+    searchedCities = JSON.parse(localStorage.getItem("searchedCities"));
+    for (i = 0; i < searchedCities.length; i++) {
+        $cityList.append($(`<li>`).text(searchedCities[i]));
+    }
+  }
+
+  else {
+    searchedCities = [];
+  };
+
+  function scoreList() {
+    for (let i = 0; i < userScores.length; i++) {
+      let tr = scoresTable.append($("<tr>"));
+      tr.append($("<td>").text(userScores[i].name));
+      tr.append($("<td>").text(userScores[i].score));
+    };
+  };
+
+// -------------------------------------------------------------------------------------
+// 5 Day Forecast Display
+// -------------------------------------------------------------------------------------
 
 // Create array from API response
 
@@ -1459,6 +1509,10 @@ function forecastPopulate() {
     };
 };
 
+// -------------------------------------------------------------------------------------
+// Current Weather Forecast
+// -------------------------------------------------------------------------------------
+
 // Display current weather
 
 function currentweather() {
@@ -1467,12 +1521,28 @@ function currentweather() {
     let temp = tempConvertor(apiresponse.list[0].main.temp);
     let humid = apiresponse.list[0].main.humidity;
     let wind = apiresponse.list[0].wind.speed;
+    let icon = apiresponse.list[0].weather[0].icon;
+    let date = moment(apiresponse.list[0].dt_txt).format('MMMM Do YYYY');
 
     $(`.city`).text(city);
+    $(`.current-date`).text(date);
     $(`.current-temp`).html(`${temp}&#176;`);
     $(`.current-humidity`).html(`${humid}&#37;`);
     $(`.current-wind`).html(`${wind} MPH`);
+    $(`.current-icon`).attr(`src`, `${iconURL}${icon}@2x.png`);
 };
+
+// -------------------------------------------------------------------------------------
+// Clear searches and local storage
+// -------------------------------------------------------------------------------------
+
+$(".btn-clear").on("click", function () {
+    localStorage.clear();
+    searchedCities = [];
+    $cityList.empty();
+  });
+
+
 
 // Temporarily calling functions, remove later
 

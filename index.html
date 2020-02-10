@@ -25,33 +25,34 @@
   <!-- Navigation -->
   <!-- -------------------------------------- -->
   <nav>
-    <div class="nav-wrapper container">
+    <div class="nav-wrapper">
       <a href="index.html" class="brand-logo">Weather App</a>
-      <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <!-- <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a> -->
     </div>
   </nav>
-
+<!-- 
   <ul class="sidenav" id="mobile">
-    <li></li>
-  </ul>
+  </ul> -->
 
   <!-- -------------------------------------- -->
   <!-- Content -->
   <!-- -------------------------------------- -->
   <div class="row">
     <div class="col s12 m4 l3">
-      <form class="search-box2">
-        <input class="search-box" type="text" placeholder="Search.." name="search">
+      <form class="search-form">
+        <input class="search-box" id="search" type="text" placeholder="Search a City" name="search">
         <button class="search-btn" type="submit"><i class="fas fa-search"></i></button>
       </form>
-      <p>Place, NH</p>
-      <p>Place, NH</p>
-      <p>Place, NH</p>
+      <ul class="city-list">
+      </ul>
+      <button type="button" class="btn-large mycolor btn-clear">Clear Searches</button>
     </div>
     <div class="col s12 m8 l9">
       <h1 class="city"></h1>
+      <p class="current-date"></p>
       <h2>Current Weather</h2>
       <div class="weather-panel">
+        <img class="current-icon" src="//:0">
         <p>Temperature: <span class="current-temp"></span></p>
         <p>Humidity: <span class="current-humidity"></span></p>
         <p>Wind Speed: <span class="current-wind"></span></p>
