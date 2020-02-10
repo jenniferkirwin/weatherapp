@@ -1421,6 +1421,7 @@ $(document).ready(function () {
 
 // Variables
 
+let fiveDays;
 let iconURL = `http://openweathermap.org/img/wn/`;
 let forecastArray = [];
 let searchedCities = [];
@@ -1442,6 +1443,9 @@ function tempConvertor(givenTemp) {
 $(`.search-btn`).on(`click`, function(event) {
     event.preventDefault();
     let cityName = $(`#search`).val();
+    // get API data
+    getFiveDays(cityName);
+    console.log(fiveDays);
 
     // add to array
     searchedCities.unshift(cityName);
@@ -1453,8 +1457,6 @@ $(`.search-btn`).on(`click`, function(event) {
     $(`#search`).val(``);
     $cityList.prepend($(`<li>`).text(cityName));
 });
-
-// Append Items to List
 
 // Display saved searches on load
 
@@ -1469,13 +1471,17 @@ if (localStorage.getItem("searchedCities") !== null) {
     searchedCities = [];
   };
 
-  function scoreList() {
-    for (let i = 0; i < userScores.length; i++) {
-      let tr = scoresTable.append($("<tr>"));
-      tr.append($("<td>").text(userScores[i].name));
-      tr.append($("<td>").text(userScores[i].score));
-    };
-  };
+// -------------------------------------------------------------------------------------
+// API Responses
+// -------------------------------------------------------------------------------------
+
+function getFiveDays(query) {
+    let queryURL = `api.openweathermap.org/data/2.5/forecast?q=${query}&appid=05474e7fa3afee8267bb04cc411f4169`
+    $.get(queryURL).then( function(data) {
+        fiveDays = JSON.stringify(data);
+        forecastPopulate()
+    });
+};
 
 // -------------------------------------------------------------------------------------
 // 5 Day Forecast Display
@@ -1485,8 +1491,8 @@ if (localStorage.getItem("searchedCities") !== null) {
 
 function forecastArrayFunc() {
     forecastArray = [];
-    for (i = 0; i < apiresponse.list.length; i++) {
-        let noonForecast = apiresponse.list[i];
+    for (i = 0; i < fiveDays.list.length; i++) {
+        let noonForecast = fiveDays.list[i];
         if (noonForecast.dt_txt.includes("12:00:00")) {
             forecastArray.push(noonForecast);
         };
@@ -1547,7 +1553,6 @@ $(".btn-clear").on("click", function () {
 // Temporarily calling functions, remove later
 
 currentweather();
-forecastPopulate();
 
 });
 
