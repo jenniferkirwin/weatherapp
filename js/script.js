@@ -58,8 +58,8 @@ $(document).ready(function () {
     // -------------------------------------------------------------------------------------
 
     function getAPIData(query) {
-        let queryURL = `http://api.openweathermap.org/data/2.5/forecast?q=${query}&appid=05474e7fa3afee8267bb04cc411f4169`
-        let currentQueryURL = `http://api.openweathermap.org/data/2.5/weather?q=${query}&appid=05474e7fa3afee8267bb04cc411f4169`;
+        let queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${query}&appid=05474e7fa3afee8267bb04cc411f4169`
+        let currentQueryURL = `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=05474e7fa3afee8267bb04cc411f4169`;
         $.get(queryURL).then(function (data) {
             fiveDays = data;
             forecastPopulate();
