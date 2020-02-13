@@ -36,7 +36,7 @@ $(document).ready(function () {
 
         // clear search and prepend li
         $(`#search`).val(``);
-        $cityList.prepend($(`<li>`).text(cityName));
+        $cityList.prepend($(`<button>`).attr(`data-city`,`${cityName}`).text(cityName).addClass(`btn-large greycolor btn-city`));
     });
 
     // Display saved searches on load
@@ -44,7 +44,7 @@ $(document).ready(function () {
     if (localStorage.getItem("searchedCities") !== null) {
         searchedCities = JSON.parse(localStorage.getItem("searchedCities"));
         for (i = 0; i < searchedCities.length; i++) {
-            $cityList.append($(`<li>`).text(searchedCities[i]));
+            $cityList.append($(`<button>`).attr(`data-city`,`${searchedCities[i]}`).text(searchedCities[i]).addClass(`btn-large greycolor btn-city`));
         }
         getAPIData(searchedCities[0]);
     }
@@ -95,6 +95,7 @@ $(document).ready(function () {
         forecastArrayFunc();
         for (i = 0; i < 5; i++) {
             let weatherPanel = $(`div[data-day="${i}"]`);
+            $(`.place-holder`).removeClass(`place-holder`);
             weatherPanel.find(`.fcDate`).text(moment(forecastArray[i].dt_txt).format('M/D'));
             weatherPanel.find(`.fcIcon`).attr(`src`, `${iconURL}${forecastArray[i].weather[0].icon}@2x.png`);
             weatherPanel.find(`.fcTemp`).html(`${tempConvertor(forecastArray[i].main.temp)}&#176;`);
@@ -109,8 +110,6 @@ $(document).ready(function () {
     // Display current weather
 
     function currentweatherPopulate() {
-
-        console.log(currentDay);
 
         let city = currentDay.name;
         let temp = tempConvertor(currentDay.main.temp);
@@ -128,13 +127,23 @@ $(document).ready(function () {
     };
 
     // -------------------------------------------------------------------------------------
-    // Clear searches and local storage
+    // Clear searches and local storage or searches city buttons
     // -------------------------------------------------------------------------------------
+
+    // Clear searches
 
     $(".btn-clear").on("click", function () {
         localStorage.clear();
         searchedCities = [];
         $cityList.empty();
+    });
+
+    // City Button
+
+    $(`.btn-city`).on(`click`, function (event) {
+        event.preventDefault();
+        let cityBtn = $(this).attr(`data-city`);
+        getAPIData(cityBtn);
     });
 });
 

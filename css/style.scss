@@ -2,9 +2,10 @@
 
 $primary-color: #17259E; 
 $secondary-color: #62B6CB;
-$grey: #ECE9E6;
+$grey: #D6D2CF;
 $light-grey:#ECE9E6;
 $light-color: #ffffff;
+$dark-color: #000000;
 $default-padding: 15px;
 $header-font: 'Calistoga', cursive;
 $body-font: 'Noto Sans KR', sans-serif;
@@ -37,6 +38,16 @@ button.mycolor {
     }
 }
 
+button.greycolor {
+    background-color: $grey;
+    color: $dark-color;
+    font-weight: bold;
+    margin-bottom: $default-padding;
+    &:hover, &:active, &:focus {
+        background-color:lighten($primary-color, 20%);  
+    }
+}
+
 /* -------------------------------------------------------------- */
 /* Styling the wrapper and to do layout*/
 /* -------------------------------------------------------------- */
@@ -46,6 +57,11 @@ button.mycolor {
     border-radius: 2px;
     padding: 5px 25px;
     background-color: $light-color;
+}
+
+.place-holder {
+    max-width: 15px;
+    padding-top: $default-padding;
 }
 
 /* -------------------------------------------------------------- */
@@ -73,7 +89,7 @@ button.mycolor {
 
 .city-list {
     clear: left;
-    li {
-        list-style-type: none;
+    .btn-city {
+        display: block;
     }
 }
